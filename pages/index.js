@@ -1,3 +1,4 @@
+import FeaturedCategories from "@/components/FeaturedCategories";
 import Featured from "@/components/Featured";
 import Header from "@/components/Header";
 import NewProducts from "@/components/NewProducts";
@@ -10,6 +11,7 @@ export default function HomePage({ product,newProducts }) {
     <div>
       <Header />
       <Featured product={product} />
+      <FeaturedCategories/>
       <NewProducts newProducts={newProducts} />
     </div>
   );

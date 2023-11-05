@@ -1,13 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Button from "./Button";
 import Link from "next/link";
 import { CartContext } from "./CartContext";
 
 const ProductBox = ({ product }) => {
 
+  const [isHover,setIsHover]=useState(false)
+
   const {addProduct}=useContext(CartContext)
+
+  console.log(isHover)
   return (
-    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div id="product-box" onMouseEnter={()=>{setIsHover(true)}} onMouseLeave={()=>{setIsHover(false)}} style={{boxShadow: "rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset"}} class="relative max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
       <Link href={"/product/" + product._id}>
         {/* <img
           class=" flex justify-center rounded-t-lg w-[300px] h-[300px]"
@@ -15,30 +19,34 @@ const ProductBox = ({ product }) => {
           src={product?.url}
           alt=""
         /> */}
-        <div className=" rounded-t-lg overflow-hidden p-3  min-w-[200px] min-h-[150px]">
+        <div className=" rounded-t-lg flex justify-center items-center overflow-hidden p-3  min-w-[200px] bg-cover ">
         <img
-              width="100%"
-              src="https://images.unsplash.com/photo-1580522154071-c6ca47a859ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bWFjYm9vayUyMHByb3xlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
+              className="w-[180px] h-[200px]"
+              // src="https://images.unsplash.com/photo-1580522154071-c6ca47a859ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bWFjYm9vayUyMHByb3xlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
+              src={product?.url}
             />""
         
                 </div>
       </Link>
       <div class="p-5 flex flex-col justify-between">
         <a href="#">
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-black ">
             {product.title}
           </h5>
         </a>
-        <div className="flex justify-between items-center">
+       <div className="h-10">
+       {/* {
+        isHover && ( */}
+          <div className="relative flex flex-row justify-between items-center">
           <a
-            href="#"
-            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            href="#" id="price-icon"
+            class="absolute top-5 right-0  inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-black rounded-lg  focus:ring-4 focus:outline-none "
           >
             ${product.price}
           </a>
           <button onClick={()=>addProduct(product._id)}
-            href=""
-            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            href="" id="cart-icon"
+            class="absolute top-5 left-9 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-black rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -56,6 +64,10 @@ const ProductBox = ({ product }) => {
             </svg>
           </button>
         </div>
+        {/* )
+       } */}
+
+       </div>
       </div>
     </div>
   );

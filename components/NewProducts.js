@@ -5,8 +5,12 @@ import Center from './Center'
 const NewProducts = ({newProducts}) => {
   
   return (
-    <Center>
-      <h2 className='mt-6 text-3xl tracking-wider font-extrabold'>New Arrivals....</h2>
+    <div style={{backgroundColor:'#F2F4F8'}}>
+      <Center>
+      <div className=" text-center mb-6">
+          <h1 className="font-extrabold text-2xl">Featured Products</h1>
+          <h4>Check & Get Your Desired Product!</h4>
+        </div>
         <div id="new-products">
         
       {
@@ -16,6 +20,7 @@ const NewProducts = ({newProducts}) => {
       }
     </div>
     </Center>
+    </div>
   )
 }
 

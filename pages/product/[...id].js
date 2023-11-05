@@ -8,8 +8,9 @@ import WhiteBox from "@/components/WhiteBox";
 import ProductImages from "@/components/ProductImages";
 import Button from "@/components/Button";
 import CartIcon from "@/components/icons/CartIcon";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "@/components/CartContext";
+import { useRouter } from "next/router";
 
 const ColWrapper = styled.div`
   display: grid;
@@ -24,35 +25,59 @@ const PriceRow = styled.div`
   display: flex;
   gap: 20px;
   align-items: center;
+  background-color: #f3eff9;
+  width: 8rem;
 `;
 const Price = styled.span`
-  font-size: 1.4rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 2px;
 `;
 
 const SingleProductDetails = ({ product }) => {
-  const { addProduct } = useContext(CartContext);
+  const router = useRouter();
+
+  const { cartProducts, addProduct, removeProduct } = useContext(CartContext);
   return (
     <>
       <Header />
       <Center>
         <ColWrapper>
           <WhiteBox>
-            <img src={product?.url}/>
+            <img src={product?.url} />
+            <div className="flex items-center gap-2 m-4">
+              <div
+                onClick={() => removeProduct(product._id)}
+                id="decrease-button"
+              >
+                -
+              </div>
+              <span>
+                {cartProducts.filter((id) => id === product._id).length}
+              </span>
+              <div onClick={() => addProduct(product._id)} id="increase-button">
+                +
+              </div>
+            </div>
           </WhiteBox>
           <div>
             <Title>{product.title}</Title>
-            <p>{product.description}</p>
             <PriceRow>
               <div>
+                <span>Price: </span>
                 <Price>${product.price}</Price>
               </div>
-              <div>
-                <Button primary onClick={() => addProduct(product._id)}>
-                  <CartIcon />
-                  Add to cart
-                </Button>
-              </div>
             </PriceRow>
+            <div className="mt-5">
+              <h2 className="underline font-semibold">Description</h2>
+              <p>{product.description}</p>
+            </div>
+
+            <div onClick={() => router.push("/cart")}>
+              <button className="bg-black text-white mt-10 px-3 py-1 rounded-md ">
+                Buy Now
+              </button>
+            </div>
           </div>
         </ColWrapper>
       </Center>

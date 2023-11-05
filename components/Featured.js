@@ -14,19 +14,19 @@ const Featured = ({product}) => {
   }
  
   return (
-    <div style={{ background: "#222"}}>
+    <div style={{ background: "#F2F4F8",marginTop:'30px'}}>
       <Center>
         <div id="featured">
           <div id="featured-left">
-            <h1 >{product.title}</h1>
-            <p>
+            <h1 className="text-black">{product.title}</h1>
+            <p className="text-blue-900">
               One notable downside of a MacBook is that it's significantly more
               expensive than a PC laptop; however, Apple does offer an
               educational discount to any student that can reduce the computer's
               total price by 10% or more.
             </p>
             <div id="button-wrapper">
-              <ButtonLink href={"/product/"+product._id} primary outline>
+              <ButtonLink href={"/product/"+product._id}  outline>
                 Read More
               </ButtonLink>
               <div onClick={addFeaturedToCart}>
