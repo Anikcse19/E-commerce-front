@@ -2,14 +2,14 @@ import Link from "next/link";
 import React, { useContext } from "react";
 import Center from "./Center";
 import { CartContext } from "./CartContext";
-import { signOut, useSession } from "next-auth/react";
+// import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
 const Header = () => {
 
   const {cartProducts}=useContext(CartContext)
 
-  const {data:session}=useSession()
+  // const {data:session}=useSession()
   const router=useRouter()
   
   return (
@@ -24,7 +24,7 @@ const Header = () => {
             <Link href="/categories">Categories</Link>
             <Link href="/cart">My Cart ({cartProducts.length})</Link>
             <Link href="/account">Account</Link>
-            <p>{session?.user?.name}</p>
+            {/* <p>{session?.user?.name}</p>
             {
               session && (
                 <button onClick={()=>{
@@ -32,7 +32,7 @@ const Header = () => {
                   router.push('/login')
                 }}>Logout</button>
               )
-            }
+            } */}
           </nav>
         </div>
       </Center>
