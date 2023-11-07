@@ -15,7 +15,7 @@ const NewProducts = ({newProducts}) => {
         
       {
         newProducts?.length>0 && newProducts.map(product=>(
-          <ProductBox product={product}/>
+          <ProductBox key={product._id} product={product}/>
         ))
       }
     </div>

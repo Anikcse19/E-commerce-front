@@ -74,7 +74,10 @@ const SingleProductDetails = ({ product }) => {
             </div>
 
             <div onClick={() => router.push("/cart")}>
-              <button className="bg-black text-white mt-10 px-3 py-1 rounded-md ">
+              <button onClick={()=>{
+                router.push('/cart')
+                addProduct(product._id)
+                }} className="bg-black text-white mt-10 px-3 py-1 rounded-md ">
                 Buy Now
               </button>
             </div>
@@ -91,7 +94,7 @@ export async function getServerSideProps(context) {
   await mongooseConnect();
   const { id } = context.query;
   const product = await Product.findById(id);
-  console.log(product);
+  // console.log(product);
 
   return {
     props: {

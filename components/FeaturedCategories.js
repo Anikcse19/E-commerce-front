@@ -28,7 +28,7 @@ const FeaturedCategories = () => {
 
         {
             categories.map(category=>(
-                <CategoryBox category={category}/>
+                <CategoryBox key={category._id} category={category}/>
             ))
         }
         </div>

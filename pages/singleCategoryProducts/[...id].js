@@ -70,13 +70,13 @@ const CategoryPage = ({ products,cat_name }) => {
               <hr></hr>
               <div id="avaiabiltiy-options" className="mt-2 flex flex-col gap-4">
                 <div id="availability-option" className="flex items-center gap-2">
-                  <input className="w-auto mb-0" type="checkbox"/> <label>In Stock</label>
+                  <input className=" mb-0" type="checkbox"/> <label>In Stock</label>
                 </div>
                 <div id="availability-option" className="flex items-center gap-2">
-                  <input className="w-auto mb-0" type="checkbox"/> <label>Pre Order</label>
+                  <input className=" mb-0" type="checkbox"/> <label>Pre Order</label>
                 </div>
                 <div id="availability-option" className="flex items-center gap-2">
-                  <input className="w-auto mb-0" type="checkbox"/> <label>Up Coming</label>
+                  <input className="mb-0" type="checkbox"/> <label>Up Coming</label>
                 </div>
               </div>
             </div>
@@ -88,34 +88,34 @@ const CategoryPage = ({ products,cat_name }) => {
               <hr></hr>
               <div id="brand-options" className="mt-2 flex flex-col gap-4">
                 <div id="brand-option" className="flex items-center gap-2">
-                  <input className="w-auto mb-0" type="checkbox"/> <label>Apple</label>
+                  <input className=" mb-0" type="checkbox"/> <label>Apple</label>
                 </div>
                 <div id="brand-option" className="flex items-center gap-2">
-                  <input className="w-auto mb-0" type="checkbox"/> <label>Huwae</label>
+                  <input className="mb-0" type="checkbox"/> <label>Huwae</label>
                 </div>
                 <div id="brand-option" className="flex items-center gap-2">
-                  <input className="w-auto mb-0" type="checkbox"/> <label>Oppo</label>
+                  <input className=" mb-0" type="checkbox"/> <label>Oppo</label>
                 </div>
                 <div id="brand-option" className="flex items-center gap-2">
-                  <input className="w-auto mb-0" type="checkbox"/> <label>Xiaomi</label>
+                  <input className=" mb-0" type="checkbox"/> <label>Xiaomi</label>
                 </div>
                 <div id="brand-option" className="flex items-center gap-2">
-                  <input className="w-auto mb-0" type="checkbox"/> <label>Vivo</label>
+                  <input className=" mb-0" type="checkbox"/> <label>Vivo</label>
                 </div>
                 <div id="brand-option" className="flex items-center gap-2">
-                  <input className="w-auto mb-0" type="checkbox"/> <label>SamSung</label>
+                  <input className=" mb-0" type="checkbox"/> <label>SamSung</label>
                 </div>
                 <div id="brand-option" className="flex items-center gap-2">
-                  <input className="w-auto mb-0" type="checkbox"/> <label>Google</label>
+                  <input className="mb-0" type="checkbox"/> <label>Google</label>
                 </div>
                 <div id="brand-option" className="flex items-center gap-2">
-                  <input className="w-auto mb-0" type="checkbox"/> <label>Motorolla</label>
+                  <input className=" mb-0" type="checkbox"/> <label>Motorolla</label>
                 </div>
                 <div id="brand-option" className="flex items-center gap-2">
-                  <input className="w-auto mb-0" type="checkbox"/> <label>Real me</label>
+                  <input className=" mb-0" type="checkbox"/> <label>Real me</label>
                 </div>
                 <div id="brand-option" className="flex items-center gap-2">
-                  <input className="w-auto mb-0" type="checkbox"/> <label>One Plus</label>
+                  <input className=" mb-0" type="checkbox"/> <label>One Plus</label>
                 </div>
               </div>
             </div>
@@ -155,11 +155,11 @@ export default CategoryPage;
 export async function getServerSideProps(context) {
   const { id } = context.query;
   const category = await Category.findById(id);
-  console.log(category);
+  // console.log(category);
   const cat_name = category.name;
-  console.log("cat name", cat_name);
+  // console.log("cat name", cat_name);
   const products = await Product.find({ category: id });
-  console.log("produss", products);
+  // console.log("produss", products);
 
   return {
     props: {

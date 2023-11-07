@@ -11,7 +11,7 @@ const AllProducts = ({products}) => {
       <div id="new-products">
         {
            products.length>0 && products.map(product=>(
-                <ProductBox product={product}/>
+                <ProductBox key={product._id} product={product}/>
             ))
         }
       </div>
