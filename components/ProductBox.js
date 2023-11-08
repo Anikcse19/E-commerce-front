@@ -2,14 +2,15 @@ import React, { useContext, useState } from "react";
 import Button from "./Button";
 import Link from "next/link";
 import { CartContext } from "./CartContext";
+import toast, { Toaster } from "react-hot-toast";
 
 const ProductBox = ({ product }) => {
   const [isHover, setIsHover] = useState(false);
-  const [isFavourite,setIsFavourite]=useState(false)
+  const [isFavourite, setIsFavourite] = useState(false);
 
-  const { addProduct, addFavourite,removeFavourite } = useContext(CartContext);
+  const { addProduct, addFavourite, removeFavourite } = useContext(CartContext);
 
-  console.log('fav' ,isFavourite);
+  console.log("fav", isFavourite);
   return (
     <div
       id="product-box"
@@ -23,9 +24,8 @@ const ProductBox = ({ product }) => {
         boxShadow:
           "rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset",
       }}
-      class="relative z-[1] max-w-sm bg-white border border-gray-200 rounded-lg shadow "
-    >
-      <Link href={"/product/"+ product._id}>
+      class="relative z-[1] max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
+      <Link href={"/product/" + product._id}>
         {/* <img
           class=" flex justify-center rounded-t-lg w-[300px] h-[300px]"
           // src="https://www.zdnet.com/a/img/resize/2a46b0d5f3617212b5cba28ad5abb06537d99886/2023/10/03/32355104-4543-4c66-ba04-8aaa13d7ffe6/google-pixel-8-pro-blue-in-hand.jpg?auto=webp&fit=crop&height=360&width=640"
@@ -43,55 +43,58 @@ const ProductBox = ({ product }) => {
       </Link>
 
       {/* add favourites */}
-        {
-          isFavourite?(
-            <div
-              onClick={() =>{
-                removeFavourite(product._id)
-                setIsFavourite(!isFavourite)
-              }}
-              className="absolute top-2 right-3 cursor-pointer"
-            >
-            <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="black"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-6 h-6"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-          />
-        </svg>
-            </div>
-          ):(
-            <div
-              onClick={() =>{
-                addFavourite(product._id)
-                setIsFavourite(!isFavourite)
-              }}
-              className="absolute top-2 right-3 cursor-pointer"
-            >
-            <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="white"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-6 h-6"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-          />
-        </svg>
+      {isFavourite ? (
+        <div
+          onClick={() => {
+            removeFavourite(product._id);
+            setIsFavourite(!isFavourite);
+            toast.success("Remove from favourites", {
+              duration: 5000,
+            });
+          }}
+          className="absolute top-2 right-3 cursor-pointer">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="black"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-6 h-6">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+            />
+          </svg>
         </div>
-          )
-        }
+      ) : (
+        <div>
+          <div
+            onClick={() => {
+              addFavourite(product._id);
+              setIsFavourite(!isFavourite);
+              toast.success("Added to favourites", {
+                duration: 5000,
+              });
+            }}
+            className="absolute top-2 right-3 cursor-pointer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="white"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+              />
+            </svg>
+          </div>
+          <Toaster position="top-right" reverseOrder={false} />
+        </div>
+      )}
       <div class="p-5 flex flex-col justify-between">
         <a href="#">
           <h5 class="mb-2 text-2xl font-bold tracking-tight text-black ">
@@ -105,24 +108,26 @@ const ProductBox = ({ product }) => {
             <a
               href="#"
               id="price-icon"
-              class="absolute top-5 right-0  inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-black rounded-lg  focus:ring-4 focus:outline-none "
-            >
+              class="absolute top-5 right-0  inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-black rounded-lg  focus:ring-4 focus:outline-none ">
               ${product.price}
             </a>
             <button
-              onClick={() => addProduct(product._id)}
+              onClick={() => {
+                addProduct(product._id);
+                toast.success("Add to cart", {
+                  duration: 5000,
+                });
+              }}
               href=""
               id="cart-icon"
-              class="absolute top-5 left-9 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-black rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 "
-            >
+              class="absolute top-5 left-9 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-black rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-6 h-6"
-              >
+                className="w-6 h-6">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"

@@ -5,7 +5,8 @@ const ProductSchema=new Schema({
     description:{type:String},
     price:{type:Number, required:true},
     category:{type:mongoose.Schema.Types.ObjectId, ref:'Category'},
-    properties:{type:Object}
+    properties:{type:Object},
+    reviews:[{type:String}]
 },{
     timestamps:true
 })

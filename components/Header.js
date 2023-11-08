@@ -37,7 +37,7 @@ const Header = () => {
       <Center>
         <div className="wrapper">
           <div id="logo">
-            <Link href="/">E-Commerce</Link>
+            <Link href="/">EasyTech</Link>
           </div>
           <nav className="text-black">
             <Link href="/products">All Products</Link>

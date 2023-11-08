@@ -1,14 +1,16 @@
-import FeaturedCategories from '@/components/FeaturedCategories'
-import Header from '@/components/Header'
-import React from 'react'
+import FeaturedCategories from "@/components/FeaturedCategories";
+import Header from "@/components/Header";
+import Layout from "@/components/Layout";
+import React from "react";
 
 const CategoriesPage = () => {
   return (
     <>
-        <Header/>
-        <FeaturedCategories/>
+      <Layout>
+        <FeaturedCategories />
+      </Layout>
     </>
-  )
-}
+  );
+};
 
-export default CategoriesPage
+export default CategoriesPage;

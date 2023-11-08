@@ -4,15 +4,17 @@ import Header from "@/components/Header";
 import NewProducts from "@/components/NewProducts";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
+import Layout from "@/components/Layout";
 
-export default function HomePage({ product,newProducts }) {
+export default function HomePage({ product, newProducts }) {
   console.log(product);
   return (
     <div>
-      <Header />
-      <Featured product={product} />
-      <FeaturedCategories/>
-      <NewProducts newProducts={newProducts} />
+      <Layout>
+        <Featured product={product} />
+        <FeaturedCategories />
+        <NewProducts newProducts={newProducts} />
+      </Layout>
     </div>
   );
 }
