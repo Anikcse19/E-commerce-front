@@ -3,9 +3,8 @@ import React from "react";
 
 const MobileMenu = () => {
   return (
-    <div className="p-2 bg-white w-screen h-screen  text-black">
-      <h1 className="text-center">EasyTech</h1>
-      <div className="flex flex-col gap-3 ">
+    <div className="p-2 md:hidden bg-[#F2F4F8] w-screen   text-black">
+      <div className="flex flex-col gap-3 justify-center items-center">
         <Link href="/">Home</Link>
         <Link href="/products">All Products</Link>
         <Link href="/categories">Categories</Link>
