@@ -24,15 +24,15 @@ const ProductBox = ({ product }) => {
         boxShadow:
           "rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset",
       }}
-      class="relative z-[1] max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
-      <Link href={"/product/" + product._id}>
+      class="relative z-[1]  md:w-[100%] bg-white border border-gray-200 rounded-lg shadow ">
+      <Link href={"/product/" + product?._id}>
         {/* <img
           class=" flex justify-center rounded-t-lg w-[300px] h-[300px]"
           // src="https://www.zdnet.com/a/img/resize/2a46b0d5f3617212b5cba28ad5abb06537d99886/2023/10/03/32355104-4543-4c66-ba04-8aaa13d7ffe6/google-pixel-8-pro-blue-in-hand.jpg?auto=webp&fit=crop&height=360&width=640"
           src={product?.url}
           alt=""
         /> */}
-        <div className=" rounded-t-lg flex justify-center items-center overflow-hidden p-3  min-w-[200px] bg-cover ">
+        <div className=" rounded-t-lg flex justify-center items-center overflow-hidden p-3  w-[100%] bg-cover ">
           <img
             className="w-[180px] h-[200px]"
             // src="https://images.unsplash.com/photo-1580522154071-c6ca47a859ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bWFjYm9vayUyMHByb3xlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
@@ -101,10 +101,10 @@ const ProductBox = ({ product }) => {
             {product.title}
           </h5>
         </a>
-        <div className="h-10">
+        <div className="h-10 relative flex flex-col md:flex-col  justify-between items-center">
           {/* {
         isHover && ( */}
-          <div className="relative flex flex-row justify-between items-center">
+          <div className="">
             <a
               href="#"
               id="price-icon"

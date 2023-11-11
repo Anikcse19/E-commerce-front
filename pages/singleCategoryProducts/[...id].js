@@ -28,7 +28,7 @@ const CategoryPage = ({ products, cat_name }) => {
     <>
       <Layout>
         {/* see all categories name */}
-        <div className="px-20 pt-10 grid grid-cols-7 gap-4">
+        <div className="px-20 pt-10 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
           {categories.map((category) => (
             <div
               onClick={() => handleCategory(category._id)}
@@ -40,7 +40,7 @@ const CategoryPage = ({ products, cat_name }) => {
         {/* <Center> */}
         <div
           id="categoryProducts-wrapper"
-          className="flex gap-10 items-center py-10 px-20">
+          className="flex flex-col md:flex-row gap-10 items-center py-10 px-20">
           {/* Searched options */}
           <div
             id="search-options"
@@ -143,13 +143,13 @@ const CategoryPage = ({ products, cat_name }) => {
 
           <div
             id="search-result"
-            className="flex-grow self-start flex flex-col gap-5">
+            className="md:flex-grow self-start flex flex-col gap-5">
             <div
               id="cat_name"
               className="px-3 py-2 bg-white border border-black rounded-md ">
               <h1 className="font-bold">{cat_name}</h1>
             </div>
-            <div id="all-categories">
+            <div className="grid grid-cols-1 w-[100%] md:grid-cols-2 lg:grid-cols-3 gap-10 mt-5 p-6 md:p-0">
               {products.length > 0 ? (
                 products.map((product) => <ProductBox product={product} />)
               ) : (

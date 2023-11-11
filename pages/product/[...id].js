@@ -139,7 +139,7 @@ const SingleProductDetails = () => {
                 </div>
               </div>
             </WhiteBox>
-            <div>
+            <div className="p-2">
               <Title>{product.title}</Title>
               <PriceRow>
                 <div>
@@ -164,7 +164,7 @@ const SingleProductDetails = () => {
               </div>
             </div>
           </ColWrapper>
-          <div>
+          <div className="p-2">
             <span className="text-xl font-bold ">Product Review</span>
 
             {product.reviews?.length > 0 ? (
@@ -211,19 +211,25 @@ const SingleProductDetails = () => {
             )}
           </div>
 
-          <div className="mt-5">
+          <div className="mt-5 p-2">
             <span className="text-xl font-bold block ">
               Say something about this Product?
             </span>
             <textarea
-              className="mt-2 p-2 block w-[50%] resize-none"
+              className="mt-2 p-2 block w-[100%] md:w-[50%] resize-none"
               rows={4}
               cols={40}
               placeholder="Type your review"
               name="review"
               value={review}
-              onChange={(e) => setReview(e.target.value)}></textarea>
+              onChange={(e) => setReview(e.target.value)}
+              onKeyPress={(e) => {
+                if (e.key == "Enter") {
+                  document.getElementById("save-button").click();
+                }
+              }}></textarea>
             <button
+              id="save-button"
               className="bg-black text-white rounded px-5 py-2 mt-2 mb-5"
               onClick={() => {
                 updateProductWithReview();
