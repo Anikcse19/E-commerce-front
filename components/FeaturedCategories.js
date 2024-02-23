@@ -7,16 +7,15 @@ import axios from "axios";
 import CategoryBox from "./CategoryBox";
 
 const FeaturedCategories = () => {
+  const [categories, setCategories] = useState([]);
 
-    const [categories,setCategories]=useState([])
+  useEffect(() => {
+    const res = axios
+      .get("/api/category")
+      .then((res) => setCategories(res.data));
+  }, []);
 
-
-    useEffect(()=>{
-        const res=axios.get('/api/category').then(res=>setCategories(res.data))
-
-    },[])
-
-    console.log('category',categories)
+  console.log("category", categories);
   return (
     <div className=" py-10" style={{ backgroundColor: "#F2F4F8" }}>
       <Center>
@@ -25,14 +24,10 @@ const FeaturedCategories = () => {
           <h4>Get Your Desired Product from Featured Category!</h4>
         </div>
         <div id="all-categories">
-
-        {
-            categories.map(category=>(
-                <CategoryBox key={category._id} category={category}/>
-            ))
-        }
+          {categories.map((category) => (
+            <CategoryBox key={category._id} category={category} />
+          ))}
         </div>
-
       </Center>
     </div>
   );

@@ -8,7 +8,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
-const CategoryPage = ({ products, cat_name }) => {
+const CategoryPage = ({ products, cat_name, id }) => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -32,7 +32,9 @@ const CategoryPage = ({ products, cat_name }) => {
           {categories.map((category) => (
             <div
               onClick={() => handleCategory(category._id)}
-              className="border border-gray-400 cursor-pointer text-center rounded-xl py-1 px-2">
+              className={`${
+                category._id == id ? "bg-black text-white" : ""
+              } border border-gray-400 cursor-pointer text-center rounded-xl py-1 px-2`}>
               {category?.name}
             </div>
           ))}
@@ -179,6 +181,7 @@ export async function getServerSideProps(context) {
     props: {
       products: JSON.parse(JSON.stringify(products)),
       cat_name: JSON.parse(JSON.stringify(cat_name)),
+      id: JSON.parse(JSON.stringify(id)),
     },
   };
 }

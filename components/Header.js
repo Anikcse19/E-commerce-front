@@ -91,7 +91,15 @@ const Header = () => {
                     </span>
                   </Link>
 
-                  <Link href="/account">Account</Link>
+                  <div className="account-btn">
+                    <Link href="/account">Account</Link>
+                    <div className="dropdown-option">
+                      <div className="flex flex-col">
+                        <Link href="/dashboard">Dashboard</Link>
+                        <span>Logout</span>
+                      </div>
+                    </div>
+                  </div>
                   {/* <p>{session?.user?.name}</p>
             {
               session && (
