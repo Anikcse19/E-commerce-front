@@ -1,8 +1,7 @@
-import React, { useContext, useState } from "react";
-import Button from "./Button";
 import Link from "next/link";
-import { CartContext } from "./CartContext";
+import { useContext, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { CartContext } from "./CartContext";
 
 const ProductBox = ({ product }) => {
   const [isHover, setIsHover] = useState(false);
@@ -24,7 +23,7 @@ const ProductBox = ({ product }) => {
         boxShadow:
           "rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset",
       }}
-      class="relative z-[1]  md:w-[100%] bg-white border border-gray-200 rounded-lg shadow ">
+      class="relative z-[1] w-[90%]  md:w-[100%] bg-white border border-gray-200 rounded-lg shadow ">
       <Link href={"/product/" + product?._id}>
         {/* <img
           class=" flex justify-center rounded-t-lg w-[300px] h-[300px]"
@@ -34,7 +33,7 @@ const ProductBox = ({ product }) => {
         /> */}
         <div className=" rounded-t-lg flex justify-center items-center overflow-hidden p-3  w-[100%] bg-cover ">
           <img
-            className="w-[180px] h-[200px]"
+            className="w-[120px] h-[120px]"
             // src="https://images.unsplash.com/photo-1580522154071-c6ca47a859ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bWFjYm9vayUyMHByb3xlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
             src={product?.url}
           />
@@ -48,9 +47,7 @@ const ProductBox = ({ product }) => {
           onClick={() => {
             removeFavourite(product._id);
             setIsFavourite(!isFavourite);
-            toast.success("Remove from favourites", {
-              duration: 5000,
-            });
+            toast.success("Remove from favourites");
           }}
           className="absolute top-2 right-3 cursor-pointer">
           <svg
@@ -73,9 +70,7 @@ const ProductBox = ({ product }) => {
             onClick={() => {
               addFavourite(product._id);
               setIsFavourite(!isFavourite);
-              toast.success("Added to favourites", {
-                duration: 5000,
-              });
+              toast.success("Added to favourites");
             }}
             className="absolute top-2 right-3 cursor-pointer">
             <svg
@@ -101,26 +96,26 @@ const ProductBox = ({ product }) => {
             {product.title}
           </h5>
         </a>
-        <div className="h-10 relative flex flex-col md:flex-col  justify-between items-center">
+        <div className="h-10  relative flex flex-col md:flex-col  justify-between items-center gap-3">
           {/* {
         isHover && ( */}
           <div className="">
             <a
               href="#"
               id="price-icon"
-              class="absolute top-5 right-0  inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-black rounded-lg  focus:ring-4 focus:outline-none ">
+              class="absolute top-5 -right-7 md:right-0  inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-black rounded-lg  focus:ring-4 focus:outline-none ">
               ${product.price}
             </a>
             <button
               onClick={() => {
                 addProduct(product._id);
                 toast.success("Add to cart", {
-                  duration: 5000,
+                  id:"product_add"
                 });
               }}
               href=""
               id="cart-icon"
-              class="absolute top-5 left-9 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-black rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 ">
+              class="absolute top-5 left-9 inline-flex items-center gap-4 px-3 py-2 text-sm font-medium text-center text-white bg-black rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

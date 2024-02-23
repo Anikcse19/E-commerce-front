@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
 import Center from "./Center";
 // import mongoose from "mongoose";
-import { mongooseConnect } from "@/lib/mongoose";
-import { Category } from "@/models/Category";
+
+
 import axios from "axios";
+import { useEffect, useState } from "react";
 import CategoryBox from "./CategoryBox";
+
+
+
 
 const FeaturedCategories = () => {
   const [categories, setCategories] = useState([]);
@@ -14,6 +17,60 @@ const FeaturedCategories = () => {
       .get("/api/category")
       .then((res) => setCategories(res.data));
   }, []);
+
+  // const categories=[
+
+  //   {
+  //     id:1,
+  //     title:'Mobile',
+  //     icon:FaMobileAlt
+  //   },
+  //   {
+  //     id:2,
+  //     title:'Laptops',
+  //     icon:GiLaptop
+  //   },
+  //   {
+  //     id:3,
+  //     title:'Headphones',
+  //     icon:FaHeadphones
+  //   },
+  //   {
+  //     id:4,
+  //     title:'TV',
+  //     icon:PiTelevision
+  //   },
+  //   {
+  //     id:5,
+  //     title:'Smart Watch',
+  //     icon:FiWatch
+  //   },
+  //   {
+  //     id:6,
+  //     title:'Gaming Console',
+  //     icon:GiConsoleController
+  //   },
+  //   {
+  //     id:7,
+  //     title:'Drone',
+  //     icon:TbDrone
+  //   },
+  //   {
+  //     id:8,
+  //     title:'Printer',
+  //     icon:TiPrinter
+  //   },
+  //   {
+  //     id:9,
+  //     title:'CC Camera',
+  //     icon:GiCctvCamera
+  //   },
+  //   {
+  //     id:10,
+  //     title:'Battery For Laptop',
+  //     icon:FaCarBattery
+  //   },
+  // ]
 
   console.log("category", categories);
   return (

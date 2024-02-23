@@ -1,13 +1,14 @@
 import Link from "next/link";
-import React, { useContext, useEffect, useState } from "react";
-import Center from "./Center";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from "./CartContext";
+import Center from "./Center";
 // import { signOut, useSession } from "next-auth/react";
-import { useRouter } from "next/router";
-import FavouriteModal from "./FavouriteModal";
-import { set } from "mongoose";
 import axios from "axios";
+import { useRouter } from "next/router";
+import { FaShoppingCart } from "react-icons/fa";
+import FavouriteModal from "./FavouriteModal";
 import MobileMenu from "./MobileMenu";
+
 
 const Header = () => {
   const router = useRouter();
@@ -91,7 +92,7 @@ const Header = () => {
                     </span>
                   </Link>
 
-                  <div className="account-btn">
+                  {/* <div className="account-btn">
                     <Link href="/account">Account</Link>
                     <div className="dropdown-option">
                       <div className="flex flex-col">
@@ -99,7 +100,7 @@ const Header = () => {
                         <span>Logout</span>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                   {/* <p>{session?.user?.name}</p>
             {
               session && (
@@ -113,6 +114,10 @@ const Header = () => {
 
                 {/* menubar */}
               </div>
+              <div onClick={()=>router.push('/cart')} className="block md:hidden p-1 relative">
+                <FaShoppingCart className="text-[20px]"/>
+                <span className="absolute -top-3 -right-3 text-[16px] font-bold bg-black w-6 h-6 text-center rounded-full text-white">{cartProducts?.length}</span>
+                </div>
               <div
                 onClick={() => setIsMobileMenu(!isMobileMenu)}
                 id="menubar"
@@ -132,7 +137,7 @@ const Header = () => {
                 </svg>
               </div>
             </div>
-            {isMobileMenu && <MobileMenu />}
+            {isMobileMenu && <div className="min-h-screen relative z-50 bg-[#F2F4F8]"><MobileMenu /></div>}
           </div>
         </Center>
       </div>

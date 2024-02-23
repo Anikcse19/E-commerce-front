@@ -1,23 +1,16 @@
-import Center from "@/components/Center";
-import Header from "@/components/Header";
-import Title from "@/components/Title";
-import { mongooseConnect } from "@/lib/mongoose";
-import { Product } from "@/models/Product";
-import styled from "styled-components";
-import WhiteBox from "@/components/WhiteBox";
-import ProductImages from "@/components/ProductImages";
-import Button from "@/components/Button";
-import CartIcon from "@/components/icons/CartIcon";
-import { useContext, useEffect, useState } from "react";
 import { CartContext } from "@/components/CartContext";
-import { useRouter } from "next/router";
+import Center from "@/components/Center";
+import Layout from "@/components/Layout";
+import Title from "@/components/Title";
+import WhiteBox from "@/components/WhiteBox";
 import axios from "axios";
+import { useRouter } from "next/router";
+import { useContext, useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import Layout from "@/components/Layout";
+import styled from "styled-components";
+import "swiper/css";
 
 const responsive = {
   desktop: {
@@ -107,9 +100,7 @@ const SingleProductDetails = () => {
         if (res.status == 200) {
           setReview("");
           fetchProduct();
-          toast.success("Review Added", {
-            duration: 5000,
-          });
+          toast.success("Review Added");
         } else {
           toast.error("Error");
         }
