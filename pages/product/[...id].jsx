@@ -165,7 +165,7 @@ const SingleProductDetails = ({ products }) => {
                         }}
                         className="cursor-pointer flex justify-end"
                       >
-                        <FaRegHeart className="text-base md:text-lg lg:text-xl" />
+                        <IoIosHeart className="text-base md:text-lg lg:text-xl" />
                       </div>
                     ) : (
                       <div>
@@ -177,7 +177,7 @@ const SingleProductDetails = ({ products }) => {
                           }}
                           className="cursor-pointer"
                         >
-                          <IoIosHeart className="text-base md:text-lg lg:text-xl" />
+                          <FaRegHeart className="text-base md:text-lg lg:text-xl" />
                         </div>
                         <Toaster position="bottom-right" reverseOrder={false} />
                       </div>
@@ -223,7 +223,9 @@ const SingleProductDetails = ({ products }) => {
               {/* description */}
               <div className="mt-3">
                 <h2 className="underline font-semibold">Description</h2>
-                <p>{product.description}</p>
+                <p className="text-sm md:text-base text-gray-400">
+                  {product.description}
+                </p>
               </div>
 
               {/* buy and add to cart button */}
@@ -264,11 +266,11 @@ const SingleProductDetails = ({ products }) => {
           </ColWrapper>
 
           {/* delivery details */}
-          <div>
+          <div className="p-2">
             <p className="text-base md:text-lg lg:text-xl font-bold">
               Delivery Options:
             </p>
-            <div className="flex items-center justify-between py-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 py-4 gap-3">
               <span className="text-base md:text-xl">
                 Location:{" "}
                 <p className="text-sm md:text-lg">Chittagong, Bangladesh</p>
@@ -347,9 +349,9 @@ const SingleProductDetails = ({ products }) => {
           </div>
 
           {/* Related Products */}
-          <div>
+          <div className="p-2">
             <span className="text-xl font-bold ">Related Products</span>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 my-3">
               {matchedProducts?.map((p, i) => (
                 <ProductBox key={i} product={p} />
               ))}
