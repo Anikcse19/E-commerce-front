@@ -1,11 +1,8 @@
-import React from 'react'
+import React from "react";
 
-const Input = ({...rest}) => {
+const Input = ({ ...rest }) => {
+  // console.log(rest)
+  return <input {...rest}></input>;
+};
 
-    console.log(rest)
-  return (
-    <input {...rest}></input>
-  )
-}
-
-export default Input
+export default Input;

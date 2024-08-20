@@ -9,7 +9,6 @@ import { FaShoppingCart } from "react-icons/fa";
 import FavouriteModal from "./FavouriteModal";
 import MobileMenu from "./MobileMenu";
 
-
 const Header = () => {
   const router = useRouter();
   const { cartProducts, favouriteProducts } = useContext(CartContext);
@@ -28,21 +27,28 @@ const Header = () => {
   // const {data:session}=useSession()
 
   return (
-    <>
+    <div className="w-full fixed z-[1000]">
       <div
+        className=""
         style={{
-          marginTop: "2px",
+          // marginTop: "2px",
           backgroundColor: "#F2F4F8",
           color: "black",
           width: "100%",
-          boxShadow:
-            "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
-        }}>
+          // boxShadow:
+          //   "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
+        }}
+      >
         <Center>
-          <div className="wrapper flex flex-col md:block">
+          <div className="wrapper flex flex-col md:block ">
             <div className="flex justify-between w-[100%]">
-              <div id="logo">
-                <Link href="/">EasyTech</Link>
+              <div
+                className="cursor-pointer"
+                onClick={() => router.push("/")}
+                id="logo"
+              >
+                {/* <Link href="/">EasyTech</Link> */}
+                <img src="/logo.png" alt="" className="w-44 h-12" />
               </div>
               <div className="flex items-center gap-2 ">
                 <nav id="nav-options" className="text-black">
@@ -56,7 +62,8 @@ const Header = () => {
                         viewBox="0 0 24 24"
                         strokeWidth={1.5}
                         stroke="currentColor"
-                        className="w-6 h-6 ">
+                        className="w-6 h-6 "
+                      >
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
@@ -71,7 +78,8 @@ const Header = () => {
                   <Link
                     href=""
                     className="flex relative"
-                    onClick={() => setShowModal(true)}>
+                    onClick={() => setShowModal(true)}
+                  >
                     <div className=" text-black rounded-[50%] p-1 ">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +87,8 @@ const Header = () => {
                         viewBox="0 0 24 24"
                         strokeWidth={1.5}
                         stroke="currentColor"
-                        className="w-6 h-6">
+                        className="w-6 h-6"
+                      >
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
@@ -114,21 +123,28 @@ const Header = () => {
 
                 {/* menubar */}
               </div>
-              <div onClick={()=>router.push('/cart')} className="block md:hidden p-1 relative">
-                <FaShoppingCart className="text-[20px]"/>
-                <span className="absolute -top-3 -right-3 text-[16px] font-bold bg-black w-6 h-6 text-center rounded-full text-white">{cartProducts?.length}</span>
-                </div>
+              <div
+                onClick={() => router.push("/cart")}
+                className="block md:hidden p-1 relative"
+              >
+                <FaShoppingCart className="text-[20px]" />
+                <span className="absolute -top-3 -right-3 text-[16px] font-bold bg-black w-6 h-6 text-center rounded-full text-white">
+                  {cartProducts?.length}
+                </span>
+              </div>
               <div
                 onClick={() => setIsMobileMenu(!isMobileMenu)}
                 id="menubar"
-                className="hidden">
+                className="hidden"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6">
+                  className="w-6 h-6"
+                >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -137,7 +153,11 @@ const Header = () => {
                 </svg>
               </div>
             </div>
-            {isMobileMenu && <div className="min-h-screen relative z-50 bg-[#F2F4F8]"><MobileMenu /></div>}
+            {isMobileMenu && (
+              <div className="min-h-screen relative z-50 bg-[#F2F4F8]">
+                <MobileMenu />
+              </div>
+            )}
           </div>
         </Center>
       </div>
@@ -146,7 +166,7 @@ const Header = () => {
         favourites={favourites}
         setShowModal={setShowModal}
       />
-    </>
+    </div>
   );
 };
 

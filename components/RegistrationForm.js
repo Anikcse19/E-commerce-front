@@ -26,7 +26,7 @@ const RegistrationForm = () => {
       setError("User already exists");
     } else {
       const data = { name, email, password };
-      console.log(data);
+      // console.log(data);
 
       const res = await axios.post("api/register/", data);
 
@@ -37,7 +37,7 @@ const RegistrationForm = () => {
         setPassword("");
         setError("");
       } else {
-        console.log("error occured");
+        // console.log("error occured");
       }
     }
   };
@@ -45,10 +45,12 @@ const RegistrationForm = () => {
   return (
     <div
       className="grid place-items-center h-screen"
-      style={{ backgroundColor: "#202024" }}>
+      style={{ backgroundColor: "#202024" }}
+    >
       <div
         className="shadow-lg p-5 w-[40%] rounded-lg  border-t-8 border-white"
-        style={{ backgroundColor: "#29292D" }}>
+        style={{ backgroundColor: "#29292D" }}
+      >
         <h1 className="font-bold my-4 text-white text-xl">Registration</h1>
         <form onSubmit={handleRegistration} className="flex flex-col gap-3">
           <input
@@ -56,22 +58,26 @@ const RegistrationForm = () => {
             value={name}
             type="text"
             placeholder="Full Name"
-            onChange={(ev) => setName(ev.target.value)}></input>
+            onChange={(ev) => setName(ev.target.value)}
+          ></input>
           <input
             id="form-input"
             value={email}
             type="text"
             placeholder="Email"
-            onChange={(ev) => setEmail(ev.target.value)}></input>
+            onChange={(ev) => setEmail(ev.target.value)}
+          ></input>
           <input
             id="form-input"
             value={password}
             type="password"
             placeholder="Password"
-            onChange={(ev) => setPassword(ev.target.value)}></input>
+            onChange={(ev) => setPassword(ev.target.value)}
+          ></input>
           <button
             type="submit"
-            className="border border-black text-white font-bold py-2 px-6 cursor-pointer">
+            className="border border-black text-white font-bold py-2 px-6 cursor-pointer"
+          >
             Register
           </button>
           {error && (

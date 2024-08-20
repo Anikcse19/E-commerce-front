@@ -46,7 +46,7 @@ const CartPage = () => {
       country,
       cartProducts,
     };
-    console.log(buyerData);
+    // console.log(buyerData);
     const response = await axios.post("/api/checkout", buyerData);
     if (response.data.url) {
       window.location = response.data.url;
@@ -60,9 +60,9 @@ const CartPage = () => {
       }
       if (window?.location.href.includes("success")) {
         setIsSuccess(true);
-        console.log(cartProducts.length);
+        // console.log(cartProducts.length);
         clearCart();
-        console.log(cartProducts.length);
+        // console.log(cartProducts.length);
       }
     }, 300);
   }, []);
@@ -108,7 +108,8 @@ const CartPage = () => {
                         <td className="flex items-center gap-2 mt-8">
                           <div
                             onClick={() => removeProduct(product._id)}
-                            id="decrease-button">
+                            id="decrease-button"
+                          >
                             -
                           </div>
                           <span>
@@ -119,7 +120,8 @@ const CartPage = () => {
                           </span>
                           <div
                             onClick={() => addProduct(product._id)}
-                            id="increase-button">
+                            id="increase-button"
+                          >
                             +
                           </div>
                         </td>
@@ -146,7 +148,8 @@ const CartPage = () => {
                   </h2>
                   <Link
                     href="/"
-                    className=" bg-black w-[100px] mx-auto mt-3 px-3 py-1 text-white text-center font-bold rounded-sm">
+                    className=" bg-black w-[100px] mx-auto mt-3 px-3 py-1 text-white text-center font-bold rounded-sm"
+                  >
                     Go Back
                   </Link>
                 </div>

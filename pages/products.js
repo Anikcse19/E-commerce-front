@@ -23,7 +23,7 @@ export async function getServerSideProps() {
     sort: { _id: -1 },
   });
 
-  console.log(productsDoc);
+  // console.log(productsDoc);
 
   return {
     props: {

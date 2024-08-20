@@ -1,13 +1,9 @@
 import Center from "./Center";
 // import mongoose from "mongoose";
 
-
 import axios from "axios";
 import { useEffect, useState } from "react";
 import CategoryBox from "./CategoryBox";
-
-
-
 
 const FeaturedCategories = () => {
   const [categories, setCategories] = useState([]);
@@ -72,7 +68,7 @@ const FeaturedCategories = () => {
   //   },
   // ]
 
-  console.log("category", categories);
+  // console.log("category", categories);
   return (
     <div className=" py-10" style={{ backgroundColor: "#F2F4F8" }}>
       <Center>

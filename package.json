@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^5.16.7",
     "axios": "^1.5.1",
     "bcryptjs": "^2.4.3",
     "buffer": "^6.0.3",
@@ -16,19 +19,21 @@
     "flowbite-react": "^0.6.4",
     "micro": "^10.0.1",
     "mongoose": "^7.6.3",
-    "next": "13.5.4",
+    "next": "^14.2.5",
     "next-auth": "^4.24.4",
     "react": "^18",
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.11.0",
     "react-multi-carousel": "^2.8.4",
+    "react-rating-stars-component": "^2.2.0",
     "stripe": "^14.1.0",
     "styled-components": "^6.0.9",
     "swiper": "^11.0.3"
   },
   "devDependencies": {
     "autoprefixer": "^10",
+    "daisyui": "^4.12.10",
     "postcss": "^8",
     "tailwindcss": "^3"
   }

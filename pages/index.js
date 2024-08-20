@@ -7,15 +7,13 @@ import { Product } from "@/models/Product";
 import Layout from "@/components/Layout";
 
 export default function HomePage({ product, newProducts }) {
-  console.log(product);
+  // console.log(product);
   return (
-    <div>
-      <Layout>
-        <Featured product={product} />
-        <FeaturedCategories />
-        <NewProducts newProducts={newProducts} />
-      </Layout>
-    </div>
+    <Layout>
+      <Featured product={product} />
+      <FeaturedCategories />
+      <NewProducts newProducts={newProducts} />
+    </Layout>
   );
 }
 
@@ -27,7 +25,7 @@ export async function getServerSideProps() {
     sort: { _id: -1 },
     limit: 10,
   });
-  console.log(newProducts);
+  // console.log(newProducts);
 
   return {
     props: {

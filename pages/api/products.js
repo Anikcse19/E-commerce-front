@@ -7,7 +7,7 @@ export default async function handle(req, res) {
   // await isAdminRequest(req,res)
 
   if (method === "GET") {
-    console.log("get api hitt");
+    // console.log("get api hitt");
 
     if (req.query?.id) {
       res.json(await Product.findOne({ _id: req.query?.id }));
@@ -38,7 +38,7 @@ export default async function handle(req, res) {
     const product = await Product.findById({ _id });
     product.reviews.push(review);
     await product.save();
-    console.log("pls", product);
+    // console.log("pls", product);
     res.json({ product }, { status: 200 });
   }
 }

@@ -5,7 +5,7 @@ import { buffer } from "micro";
 // import {Order} from "@/models/Order";
 
 const endpointSecret =
-"whsec_48f2c797a3ed730520264869c21ae737aa4f672f0dd20583b92eec054252ad6f";
+  "whsec_48f2c797a3ed730520264869c21ae737aa4f672f0dd20583b92eec054252ad6f";
 
 export default async function handler(req, res) {
   await mongooseConnect();
@@ -30,18 +30,17 @@ export default async function handler(req, res) {
     case "checkout.session.completed":
       const data = event.data.object;
       const orderId = data.metadata.orderId;
-      const paid = data.payment_status === 'paid';
-      console.log(paid);
+      const paid = data.payment_status === "paid";
+      // console.log(paid);
       if (orderId && paid) {
-        await Order.findByIdAndUpdate(orderId,{
-          paid:true,
-        })
+        await Order.findByIdAndUpdate(orderId, {
+          paid: true,
+        });
       }
       break;
-    
 
     default:
-      console.log(`Unhandled event type ${event.type}`);
+    // console.log(`Unhandled event type ${event.type}`);
   }
 
   res.status(200).send("ok");
