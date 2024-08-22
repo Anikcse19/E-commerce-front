@@ -143,7 +143,7 @@ const SingleProductDetails = ({ products }) => {
       <Layout>
         <Center>
           <ColWrapper>
-            <WhiteBox>
+            <div>
               <div
                 style={{
                   boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
@@ -160,7 +160,7 @@ const SingleProductDetails = ({ products }) => {
                 <p className="animate-pulse">In Stock</p>
                 <p>(Only 15 Items left)</p>
               </div>
-            </WhiteBox>
+            </div>
             <div className="p-2">
               {/* title and favrt */}
               <div className="flex items-center justify-between">
