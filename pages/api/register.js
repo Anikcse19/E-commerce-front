@@ -7,7 +7,7 @@ export default async function handler(req, res) {
     // console.log(name,email,password)
     try {
       const { name, email, password } = req.body;
-      // console.log('api hit',password)
+      console.log("api hit", password);
       await mongooseConnect();
 
       const hashedpass = await bcrypt.hash(password, 10);

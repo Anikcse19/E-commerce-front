@@ -22,7 +22,7 @@ const ProductBox = ({ product }) => {
       onMouseLeave={() => {
         setIsHover(false);
       }}
-      class="relative z-[1] w-[90%] mx-auto  md:w-[100%] bg-white border border-gray-400 rounded-md p-2"
+      class="relative z-[1] w-[90%] mx-auto  md:w-[100%] bg-white border border-gray-400 rounded-md p-2 group"
     >
       <Link href={"/product/" + product?._id}>
         {/* <img
@@ -31,7 +31,7 @@ const ProductBox = ({ product }) => {
           src={product?.url}
           alt=""
         /> */}
-        <div className=" rounded-t-lg flex justify-center items-center overflow-hidden p-3  w-[100%] bg-cover ">
+        <div className="group-hover:scale-110  transition-all duration-300 rounded-t-lg flex justify-center items-center overflow-hidden p-3  w-[100%] bg-cover ">
           <img
             className="w-90% h-[220px]"
             // src="https://images.unsplash.com/photo-1580522154071-c6ca47a859ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bWFjYm9vayUyMHByb3xlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
@@ -41,14 +41,18 @@ const ProductBox = ({ product }) => {
       </Link>
 
       <div class="flex flex-col gap-2 px-5">
-        <h5 class="text-base font-bold">{product.title}</h5>
+        <h5 class="text-base font-bold group-hover:text-[#7C00FE] group-hover:scale-105 transition-all duration-300 ease-out">
+          {product.title}
+        </h5>
         <p className="text-gray-500 text-xs ">{`${product.description.slice(
           0,
           100
         )}...`}</p>
         <div className="flex items-center gap-3">
-          <span>&#2547; {product?.price}</span>
-          <span className="text-gray-400">
+          <span className="group-hover:text-[#7C00FE] font-bold">
+            &#2547; {product?.price}
+          </span>
+          <span className="text-red-400 animate-bounce">
             {" "}
             {product?.discount ? ` - ${product.discount}` : "- 60%"}
           </span>

@@ -4,7 +4,12 @@ import Footer from "./Footer";
 
 const Layout = ({ children }) => {
   return (
-    <div className="w-full flex flex-col gap-10 justify-between">
+    <div
+      style={{
+        background: "#F2F4F8",
+      }}
+      className="w-full flex flex-col gap-10 justify-between"
+    >
       <div className="relative w-full">
         <Header />
       </div>

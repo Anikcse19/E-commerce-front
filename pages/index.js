@@ -10,7 +10,7 @@ export default function HomePage({ product, newProducts }) {
   // console.log(product);
   return (
     <Layout>
-      <Featured product={product} />
+      <Featured products={newProducts} />
       <FeaturedCategories />
       <NewProducts newProducts={newProducts} />
     </Layout>

@@ -19,6 +19,7 @@ import { FaUser } from "react-icons/fa";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
 import ProductBox from "@/components/ProductBox";
+import Cookies from "js-cookie";
 
 const responsive = {
   desktop: {
@@ -62,10 +63,12 @@ const SingleProductDetails = ({ products }) => {
     addFavourite,
     removeFavourite,
   } = useContext(CartContext);
-  const [review, setReview] = useState("");
+  const [review, setReview] = useState({});
+  const [comment, setComment] = useState("");
   const [product, setProduct] = useState({});
   const [isFavourite, setIsFavourite] = useState(false);
   const router = useRouter();
+  const user = Cookies.get("user") && JSON.parse(Cookies.get("user"));
 
   const { id } = router.query;
 
@@ -105,8 +108,14 @@ const SingleProductDetails = ({ products }) => {
       url: product.url,
       review,
     };
+    const rev = {
+      comment: comment,
+      userName: user?.name,
+    };
 
-    if (review == "") return;
+    console.log(rev, "rev");
+
+    if (comment == "") return;
     await axios
       .post("/api/products/", {
         _id: product._id,
@@ -116,11 +125,11 @@ const SingleProductDetails = ({ products }) => {
         category: product.category,
         properties: product.properties,
         url: product.url,
-        review,
+        review: rev,
       })
       .then(async (res) => {
         if (res.status == 200) {
-          setReview("");
+          setComment("");
           fetchProduct();
           toast.success("Review Added");
         } else {
@@ -135,7 +144,12 @@ const SingleProductDetails = ({ products }) => {
         <Center>
           <ColWrapper>
             <WhiteBox>
-              <div className="hover:scale-110 transition-all duration-500 ease-out cursor-pointer rounded flex items-center justify-center">
+              <div
+                style={{
+                  boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+                }}
+                className="hover:scale-110 transition-all duration-500 ease-out cursor-pointer rounded flex items-center justify-center"
+              >
                 <img
                   src={product?.url}
                   alt="product_image"
@@ -143,14 +157,16 @@ const SingleProductDetails = ({ products }) => {
                 />
               </div>
               <div className="flex items-center gap-2 m-4">
-                <p>In Stock</p>
+                <p className="animate-pulse">In Stock</p>
                 <p>(Only 15 Items left)</p>
               </div>
             </WhiteBox>
             <div className="p-2">
               {/* title and favrt */}
               <div className="flex items-center justify-between">
-                <Title>{product?.title}</Title>
+                <p className="text-base md:text-lg lg:text-xl text-blue-500 font-bold">
+                  {product?.title}
+                </p>
                 <div className="flex items-center gap-5">
                   {/* share */}
                   <IoMdShare className="text-base md:text-lg lg:text-xl" />
@@ -274,14 +290,23 @@ const SingleProductDetails = ({ products }) => {
               <span className="text-base md:text-xl">
                 Location:{" "}
                 <p className="text-sm md:text-lg">Chittagong, Bangladesh</p>
+                <div className="flex p-2">
+                  <p className="text-sm bg-red-600 px-4 cursor-pointer rounded-md text-white py-1">
+                    Change location
+                  </p>
+                </div>
               </span>
               <span className="text-base md:text-xl">
                 Estimated delivery fee:{" "}
-                <p className="text-sm md:text-lg">&#2547; 60</p>
+                <p className="text-sm md:text-lg text-red-600 font-bold">
+                  &#2547; 60
+                </p>
               </span>
               <span className="text-base md:text-xl">
                 Payment Process:{" "}
-                <p className="text-sm md:text-lg">Cash On Delivery</p>
+                <p className="text-sm md:text-lg text-blue-800 font-bold">
+                  Cash On Delivery
+                </p>
               </span>
               <span className="text-base md:text-xl">
                 Return Policy:{" "}
@@ -302,7 +327,7 @@ const SingleProductDetails = ({ products }) => {
                     {/* icon and name  and rating*/}
                     <div className="flex items-center gap-2 text-lg">
                       <FaUser />
-                      <p>Anik Deb</p>
+                      <p>{review?.userName}</p>
                       <Rating readOnly defaultValue={4} precision={0.5} />
                     </div>
                     {/* date */}
@@ -311,7 +336,7 @@ const SingleProductDetails = ({ products }) => {
                     </div>
                   </div>
                   {/* reviews */}
-                  <div className="p-4">{`"${review}"`}</div>
+                  <div className="p-4">{`"${review?.comment}"`}</div>
                 </div>
               ))}
             </div>
@@ -327,8 +352,8 @@ const SingleProductDetails = ({ products }) => {
               cols={40}
               placeholder="Type your review"
               name="review"
-              value={review}
-              onChange={(e) => setReview(e.target.value)}
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
               onKeyPress={(e) => {
                 if (e.key == "Enter") {
                   document.getElementById("save-button").click();

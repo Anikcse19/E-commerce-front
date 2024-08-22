@@ -33,7 +33,7 @@ export default async function handle(req, res) {
       _id,
       review,
     } = req.body;
-    // console.log('from server',reviews)
+    console.log("from server", review);
     //   const updateProductDoc= await Product.updateOne({_id},{title,description,price,category,url,properties,reviews})
     const product = await Product.findById({ _id });
     product.reviews.push(review);

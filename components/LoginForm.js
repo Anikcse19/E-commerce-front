@@ -1,3 +1,5 @@
+import axios from "axios";
+import Cookies from "js-cookie";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { Router, useRouter } from "next/router";
@@ -16,30 +18,28 @@ const LoginForm = () => {
 
     const data = { email, password };
 
-    // try {
-
-    //   const res=await signIn('credentials',{
-    //     email,password,redirect:false
-    //   })
-
-    //   if(res.error){
-    //     setError('Invalid Credentials')
-    //     return;
-    //   }
-
-    //   router.push('/')
-
-    // } catch (error) {
-    //   setError(error)
-    // }
+    try {
+      axios.post("/api/login", { email, password }).then((res) => {
+        if (res.status == 200) {
+          Cookies.set("user", JSON.stringify(res?.data?.user), {
+            expires: 0.041,
+          });
+          router.push("/");
+        }
+      });
+    } catch (error) {
+      setError(error);
+    }
   };
   return (
     <div
       className="grid place-items-center h-screen"
-      style={{ backgroundColor: "#202024" }}>
+      style={{ backgroundColor: "#202024" }}
+    >
       <div
         className="shadow-lg p-5 w-[40%] rounded-lg  border-t-8 border-white"
-        style={{ backgroundColor: "#29292D" }}>
+        style={{ backgroundColor: "#29292D" }}
+      >
         <h1 className="font-bold my-4 text-white text-xl">Login</h1>
         <form onSubmit={handleLogin} className="flex flex-col gap-3">
           <input
@@ -47,13 +47,15 @@ const LoginForm = () => {
             value={email}
             id="form-input"
             type="email"
-            placeholder="Email"></input>
+            placeholder="Email"
+          ></input>
           <input
             onChange={(ev) => setPassword(ev.target.value)}
             value={password}
             id="form-input"
             type="password"
-            placeholder="Password"></input>
+            placeholder="Password"
+          ></input>
           <button className="border border-black text-white font-bold py-2 px-6 cursor-pointer">
             Login
           </button>
@@ -68,7 +70,8 @@ const LoginForm = () => {
 
           <Link
             href="/register"
-            className="text-sm text-white mt-3 text-right ">
+            className="text-sm text-white mt-3 text-right "
+          >
             Don't have an account? <span className="underline">Register</span>
           </Link>
         </form>
