@@ -7,6 +7,7 @@ import Link from "next/link";
 import React, { useContext, useEffect, useState } from "react";
 import Input from "../components/Input";
 import Layout from "@/components/Layout";
+import RequireAuth from "@/RequireAuth";
 
 const CartPage = () => {
   const { cartProducts, addProduct, removeProduct, clearCart } =
@@ -216,4 +217,4 @@ const CartPage = () => {
   );
 };
 
-export default CartPage;
+export default RequireAuth(CartPage);

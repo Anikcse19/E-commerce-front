@@ -5,13 +5,11 @@ import { CartContext } from "./CartContext";
 import ReactStars from "react-rating-stars-component";
 import { Rating } from "@mui/material";
 
-const ProductBox = ({ product }) => {
+const ProductBox = ({ product, from }) => {
   const [isHover, setIsHover] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
 
   const { addProduct, addFavourite, removeFavourite } = useContext(CartContext);
-
-  console.log("product", product?.rating);
 
   return (
     <div
@@ -41,10 +39,17 @@ const ProductBox = ({ product }) => {
       </Link>
 
       <div class="flex flex-col gap-2 px-5">
-        <h5 class="text-base font-bold group-hover:text-[#7C00FE] group-hover:scale-105 transition-all duration-300 ease-out">
-          {product.title}
-        </h5>
-        <p className="text-gray-500 text-xs ">{`${product.description.slice(
+        <div className="flex items-center gap-4">
+          <h5 class="text-sm font-bold group-hover:text-[#7C00FE] group-hover:scale-105 transition-all duration-300 ease-out">
+            {product?.title}
+          </h5>
+          {from == "top-sell" && (
+            <p className="bg-red-600 font-bold p-2 text-center text-white rounded-full text-xs animate-bounce">
+              Top Sell
+            </p>
+          )}
+        </div>
+        <p className="text-gray-500 text-xs ">{`${product?.description.slice(
           0,
           100
         )}...`}</p>
@@ -52,16 +57,16 @@ const ProductBox = ({ product }) => {
           <span className="group-hover:text-[#7C00FE] font-bold">
             &#2547; {product?.price}
           </span>
-          <span className="text-red-400 animate-bounce">
+          <span className="text-red-600 animate-pulse">
             {" "}
-            {product?.discount ? ` - ${product.discount}` : "- 60%"}
+            {product?.discount ? ` - ${product?.discount}` : "- 60%"}
           </span>
         </div>
 
         <div>
           <Rating
             name="half-rating-read"
-            defaultValue={product?.rating ? product.rating : 3.5}
+            defaultValue={product?.rating ? product?.rating : 3.5}
             precision={0.5}
             readOnly
           />

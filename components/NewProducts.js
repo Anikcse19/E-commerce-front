@@ -13,7 +13,7 @@ const NewProducts = ({ newProducts }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center items-center text  gap-3 p-2">
             {newProducts?.length > 0 &&
               newProducts.map((product) => (
-                <ProductBox key={product._id} product={product} />
+                <ProductBox key={product._id} from="" product={product} />
               ))}
           </div>
         </div>

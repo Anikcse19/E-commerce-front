@@ -11,6 +11,7 @@ const LoginForm = () => {
   const [error, setError] = useState("");
 
   const router = useRouter();
+  const { redirect } = router.query;
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -24,7 +25,7 @@ const LoginForm = () => {
           Cookies.set("user", JSON.stringify(res?.data?.user), {
             expires: 0.041,
           });
-          router.push("/");
+          router.push(redirect || "/");
         }
       });
     } catch (error) {

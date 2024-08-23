@@ -12,7 +12,7 @@ const RequireAuth = (WrappedComponent) => {
 
     useEffect(() => {
       if (!isAuthenticated) {
-        router.push("/Auth/Login"); // Redirect to login page if not authenticated
+        router.push(`/login?redirect=${router.asPath}`); // Redirect to login page if not authenticated
       }
     }, [isAuthenticated, router]);
 

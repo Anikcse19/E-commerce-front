@@ -6,6 +6,7 @@ import { CartContext } from "./CartContext";
 import axios from "axios";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import toast from "react-hot-toast";
 
 const responsive = {
   desktop: {
@@ -26,10 +27,15 @@ const responsive = {
 };
 
 const Featured = ({ products }) => {
-  const { addProduct } = useContext(CartContext);
+  const { addProduct, cartProducts } = useContext(CartContext);
 
-  const addFeaturedToCart = () => {
-    addProduct(product?._id);
+  const addFeaturedToCart = (product) => {
+    const a = cartProducts?.find((c) => c === product._id);
+    if (a === product?._id) {
+      toast("Already added");
+    } else {
+      addProduct(product._id);
+    }
   };
 
   return (
@@ -73,7 +79,11 @@ const Featured = ({ products }) => {
                   >
                     Read More
                   </div>
-                  <div onClick={addFeaturedToCart}>
+                  <div
+                    onClick={() => {
+                      addFeaturedToCart(product);
+                    }}
+                  >
                     <div className="bg-[#7C00FE] hover:bg-[#8f2cf9] px-8 py-2 rounded-md flex items-center gap-3 cursor-pointer hover:scale-105 transition-all duration-300 ease-in-out">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

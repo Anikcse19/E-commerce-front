@@ -24,7 +24,7 @@ const Header = () => {
     // Only set the user state on the client side
     const cookieUser = Cookies.get("user") && JSON.parse(Cookies.get("user"));
     setUser(cookieUser);
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     axios
@@ -143,7 +143,6 @@ const Header = () => {
                       <span
                         onClick={() => {
                           Cookies.remove("user");
-                          router.push("/login");
                         }}
                         className="bg-[#7C00FE] text-white font-bold px-4 py-1 cursor-pointer rounded-md "
                       >

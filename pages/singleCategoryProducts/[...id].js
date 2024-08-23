@@ -26,17 +26,15 @@ const CategoryPage = ({ products, cat_name, id }) => {
     <>
       <Layout>
         {/* see all categories name */}
-        <div className="flex px-5 md:px-20 ">
-          <h1 className="p-2 mt-5 text-lg border-4 shadow-xl border-black">
-            Explore Available Categories
-          </h1>
-        </div>
+        <div className="flex px-5 md:px-20 "></div>
         <div className="px-5 md:px-20 pt-5 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
           {categories.map((category) => (
             <div
               onClick={() => handleCategory(category._id)}
               className={`${
-                category._id == id ? "bg-black text-white" : ""
+                category._id == id
+                  ? "bg-[#7C00FE] text-white font-bold"
+                  : "hover:bg-[#7b00fe49]"
               } border border-gray-400 cursor-pointer text-center rounded-xl py-1 px-2`}
             >
               {category?.name}
@@ -162,7 +160,7 @@ const CategoryPage = ({ products, cat_name, id }) => {
               id="cat_name"
               className="px-3 py-2 bg-white border border-black rounded-md "
             >
-              <h1 className="font-bold">{cat_name}</h1>
+              <h1 className="font-bold text-[#7C00FE]">{cat_name}</h1>
             </div>
             <div className="grid grid-cols-1  w-[100%] md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-10 mt-5  md:p-0">
               {products.length > 0 ? (
