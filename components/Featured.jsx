@@ -39,7 +39,7 @@ const Featured = ({ products }) => {
   };
 
   return (
-    <div style={{ background: "#F2F4F8", paddingTop: "30px" }}>
+    <div style={{ paddingTop: "30px" }}>
       <Center>
         <Carousel
           swipeable={true}

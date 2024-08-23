@@ -7,6 +7,7 @@ export function CartContextProvider({ children }) {
 
   const [cartProducts, setCartProducts] = useState([]);
   const [favouriteProducts, setFavouriteProducts] = useState([]);
+  const [showInitialModal, setShowInitialModal] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -84,6 +85,8 @@ export function CartContextProvider({ children }) {
         removeFavourite,
         removeProduct,
         clearCart,
+        showInitialModal,
+        setShowInitialModal,
       }}
     >
       {children}

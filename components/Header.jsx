@@ -39,7 +39,7 @@ const Header = () => {
     <div className="w-full fixed z-[1000]">
       <div
         style={{
-          backgroundColor: "#F2F4F8",
+          backgroundColor: "#F6F5F2",
           color: "black",
           width: "100%",
         }}

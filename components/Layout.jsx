@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
+import InitialModal from "./Modal/InitialModal";
+import { CartContext } from "./CartContext";
 
 const Layout = ({ children }) => {
   return (
     <div
       style={{
-        background: "#F2F4F8",
+        background: "#F6F5F2",
       }}
-      className="w-full flex flex-col gap-10 justify-between"
+      className="w-full flex flex-col gap-10 justify-between relative"
     >
       <div className="relative w-full">
         <Header />

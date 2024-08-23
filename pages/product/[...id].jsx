@@ -20,6 +20,7 @@ import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
 import ProductBox from "@/components/ProductBox";
 import Cookies from "js-cookie";
+import RequireAuth from "@/RequireAuth";
 
 const responsive = {
   desktop: {
@@ -67,6 +68,7 @@ const SingleProductDetails = ({ products }) => {
   const [comment, setComment] = useState("");
   const [product, setProduct] = useState({});
   const [isFavourite, setIsFavourite] = useState(false);
+  const [rating, setRating] = useState(0);
   const router = useRouter();
   const user = Cookies.get("user") && JSON.parse(Cookies.get("user"));
 
@@ -94,7 +96,9 @@ const SingleProductDetails = ({ products }) => {
   console.log(matchedProducts, "match");
 
   useEffect(() => {
-    fetchProduct();
+    if (id) {
+      fetchProduct();
+    }
   }, [id]);
 
   const updateProductWithReview = async () => {
@@ -110,6 +114,7 @@ const SingleProductDetails = ({ products }) => {
     };
     const rev = {
       comment: comment,
+      rating: rating,
       userName: user?.name,
     };
 
@@ -130,6 +135,7 @@ const SingleProductDetails = ({ products }) => {
       .then(async (res) => {
         if (res.status == 200) {
           setComment("");
+          setRating(0);
           fetchProduct();
           toast.success("Review Added");
         } else {
@@ -145,9 +151,9 @@ const SingleProductDetails = ({ products }) => {
           <ColWrapper>
             <div>
               <div
-                style={{
-                  boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
-                }}
+                // style={{
+                //   boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+                // }}
                 className="hover:scale-110 transition-all duration-500 ease-out cursor-pointer rounded flex items-center justify-center"
               >
                 <img
@@ -209,11 +215,12 @@ const SingleProductDetails = ({ products }) => {
                   <span className="font-bold text-sm md:text-lg">
                     &#2547;{product?.price}
                   </span>
+                  <p className=""> &#2547; 600</p>
                 </div>
                 <div>
                   <span className="text-gray-400">Discount: </span>
-                  <span className=" text-gray-400 text-sm md:text-lg">
-                    {product?.discount}
+                  <span className=" text-gray-400 text-sm md:text-base ">
+                    {product?.discount ? product?.discount : "-15%"}
                   </span>
                 </div>
               </div>
@@ -327,30 +334,54 @@ const SingleProductDetails = ({ products }) => {
                     {/* icon and name  and rating*/}
                     <div className="flex items-center gap-2 text-lg">
                       <FaUser />
-                      <p>{review?.userName}</p>
-                      <Rating readOnly defaultValue={4} precision={0.5} />
+                      <p>
+                        {review?.userName ? review?.userName : "Guest User"}
+                      </p>
                     </div>
                     {/* date */}
                     <div>
                       <p className="text-gray-600 text-sm">14th july, 2024</p>
                     </div>
                   </div>
-                  {/* reviews */}
-                  <div className="p-4">{`"${review?.comment}"`}</div>
+                  {/* reviews and ratings*/}
+                  <div className="pt-4 pb-2">
+                    <Rating
+                      readOnly
+                      defaultValue={review?.rating ? review?.rating : 4}
+                      precision={0.5}
+                    />
+                  </div>
+                  <div className="px-4">{`"${review?.comment}"`}</div>
                 </div>
               ))}
             </div>
           </section>
           {/* Product reviews post */}
           <div className="mt-5 p-2">
-            <span className="text-xl font-bold block ">
-              Say something about this Product?
-            </span>
+            <span className="text-xl font-bold block ">Give your Opinions</span>
+            <div className="flex items-center gap-5 my-3">
+              <span className="text-xs md:text-lg lg:text-xl">Rating</span>
+              <div className="flex items-center gap-3">
+                {[1, 2, 3, 4, 5].map((r) => (
+                  <span
+                    key={r}
+                    onClick={() => setRating(r)}
+                    className={`${
+                      rating == r
+                        ? "bg-red-500 font-bold text-white"
+                        : "border-2 border-red-500 hover:bg-red-200"
+                    } cursor-pointer px-3 py-1 rounded-md  transition-all duration-1000 ease-out`}
+                  >
+                    {r}
+                  </span>
+                ))}
+              </div>
+            </div>
             <textarea
               className="mt-2 p-2 block w-[100%] md:w-[50%] resize-none"
               rows={4}
               cols={40}
-              placeholder="Type your review"
+              placeholder="write your opinion"
               name="review"
               value={comment}
               onChange={(e) => setComment(e.target.value)}
@@ -388,7 +419,7 @@ const SingleProductDetails = ({ products }) => {
   );
 };
 
-export default SingleProductDetails;
+export default RequireAuth(SingleProductDetails);
 
 export async function getServerSideProps() {
   await mongooseConnect();

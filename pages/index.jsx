@@ -8,11 +8,23 @@ import Layout from "@/components/Layout";
 import Center from "@/components/Center";
 import ProductCarousel from "@/components/Carousel/ProductCarousel";
 import RequireAuth from "@/RequireAuth";
+import { useContext, useEffect, useRef } from "react";
+import { useRouter } from "next/router";
+import InitialModal from "@/components/Modal/InitialModal";
+import { CartContext } from "@/components/CartContext";
 
-const HomePage = ({ product, newProducts }) => {
+const HomePage = ({ newProducts, allProducts }) => {
+  const router = useRouter();
+  const { showInitialModal, setShowInitialModal } = useContext(CartContext);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowInitialModal(true);
+    }, 3000);
+  }, []);
   // make a new array with all laptops
   const laptopProducts = [];
-  newProducts.filter((product) => {
+  allProducts.filter((product) => {
     if (product.category == "651b8cea5eeccc404e0be01a") {
       laptopProducts.push(product);
     }
@@ -20,15 +32,15 @@ const HomePage = ({ product, newProducts }) => {
 
   // make a new array with all mobiles
   const mobilePorducts = [];
-  newProducts.filter((product) => {
-    if (product.category == "651b0ccc5cbaf886f380c84e") {
+  allProducts.filter((product) => {
+    if (product.category == "651b0c565cbaf886f380c848") {
       mobilePorducts.push(product);
     }
   });
 
   // make a new array with all headphones
   const headPhonesProducts = [];
-  newProducts.filter((product) => {
+  allProducts.filter((product) => {
     if (product.category == "651b8cf25eeccc404e0be01e") {
       headPhonesProducts.push(product);
     }
@@ -47,9 +59,60 @@ const HomePage = ({ product, newProducts }) => {
 
   return (
     <Layout>
-      <Featured products={newProducts} />
-      <FeaturedCategories />
-      <NewProducts newProducts={newProducts} />
+      <div className="min-h-[100vh]">
+        <Featured products={newProducts} />
+        <FeaturedCategories />
+      </div>
+      {/* advertisement */}
+      <div
+        className="w-[90%]  mx-auto my-16
+       grid grid-cols-1 lg:grid-cols-2 items-center "
+      >
+        <div className="w-full">
+          <img
+            src="/offerAd1.jpg"
+            className="w-full h-[400px] bg-cover"
+            alt=""
+          />
+        </div>
+        <div className=" w-full grid grid-cols-1 lg:grid-cols-2 place-items-center">
+          <img
+            onClick={() => {
+              router.push(`/product/${laptopProducts[2]?._id}`);
+            }}
+            className="h-[200px] w-[60%] hover:scale-125 transition-all duration-300 ease-in-out cursor-pointer"
+            src={laptopProducts[2].url}
+            alt=""
+          />
+          <img
+            onClick={() => {
+              router.push(`/product/${headPhonesProducts[2]?._id}`);
+            }}
+            className="h-[200px]  w-[60%] hover:scale-125 transition-all duration-300 ease-in-out cursor-pointer"
+            src={headPhonesProducts[2].url}
+            alt=""
+          />
+          <img
+            onClick={() => {
+              router.push(`/product/${mobilePorducts[2]?._id}`);
+            }}
+            className="h-[200px] w-[60%] hover:scale-125 transition-all duration-300 ease-in-out cursor-pointer"
+            src={mobilePorducts[2].url}
+            alt=""
+          />
+          <img
+            onClick={() => {
+              router.push(`/product/${laptopProducts[3]?._id}`);
+            }}
+            className="h-[200px]  w-[60%] hover:scale-125 transition-all duration-300 ease-in-out cursor-pointer"
+            src={laptopProducts[3].url}
+            alt=""
+          />
+        </div>
+      </div>
+      <div>
+        <NewProducts newProducts={newProducts} />
+      </div>
 
       <Center>
         {/* Show top sell */}
@@ -99,6 +162,12 @@ const HomePage = ({ product, newProducts }) => {
           </div>
         </div>
       </Center>
+
+      {showInitialModal && (
+        <div className="w-full h-full z-[1000]  flex justify-center items-center fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <InitialModal />
+        </div>
+      )}
     </Layout>
   );
 };
@@ -112,12 +181,16 @@ export async function getServerSideProps() {
     sort: { _id: -1 },
     limit: 10,
   });
+  const allProducts = await Product.find({}, null, {
+    sort: { _id: -1 },
+  });
   // console.log(newProducts);
 
   return {
     props: {
       product: JSON.parse(JSON.stringify(product)),
       newProducts: JSON.parse(JSON.stringify(newProducts)),
+      allProducts: JSON.parse(JSON.stringify(allProducts)),
     },
   };
 }

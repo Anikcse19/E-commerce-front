@@ -15,7 +15,7 @@ const FeaturedCategories = () => {
   }, []);
 
   return (
-    <div className=" py-10" style={{ backgroundColor: "#F2F4F8" }}>
+    <div className=" py-10" style={{}}>
       <Center>
         <div className=" text-center mb-6">
           <h1 className="font-extrabold text-2xl">Featured Category</h1>

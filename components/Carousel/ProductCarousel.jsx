@@ -2,6 +2,8 @@ import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ProductBox from "../ProductBox";
+import { BiSolidLeftArrow } from "react-icons/bi";
+import { BiSolidRightArrow } from "react-icons/bi";
 
 const responsive = {
   desktop: {
@@ -11,14 +13,36 @@ const responsive = {
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 2,
-    slidesToSlide: 2, // optional, default to 1.
+    items: 3,
+    slidesToSlide: 3, // optional, default to 1.
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 1,
-    slidesToSlide: 1, // optional, default to 1.
+    items: 2,
+    slidesToSlide: 2, // optional, default to 1.
   },
+};
+
+const CustomLeftArrow = ({ onClick }) => {
+  return (
+    <div
+      onClick={onClick}
+      className="absolute right-10 -bottom-1 transform -translate-y-1/2 cursor-pointer "
+    >
+      <BiSolidLeftArrow className="text-base sm:text-base md:text-lg lg:text-xl" />
+    </div>
+  );
+};
+
+const CustomRightArrow = ({ onClick }) => {
+  return (
+    <div
+      onClick={onClick}
+      className="absolute right-0 -bottom-1 transform -translate-y-1/2 cursor-pointer"
+    >
+      <BiSolidRightArrow className="text-base sm:text-base md:text-lg lg:text-xl" />
+    </div>
+  );
 };
 
 const ProductCarousel = ({ products, from }) => {
@@ -37,12 +61,15 @@ const ProductCarousel = ({ products, from }) => {
       transitionDuration={500}
       containerClass="carousel-container"
       removeArrowOnDeviceType={[]}
+      customLeftArrow={<CustomLeftArrow />}
+      customRightArrow={<CustomRightArrow />}
       // deviceType={this.props.deviceType}
       dotListClass="custom-dot-list-style"
       itemClass="carousel-item-padding-40-px"
+      className="pb-8"
     >
       {products.map((product) => (
-        <div key={product?._id} className="p-2">
+        <div key={product?._id} className="px-2 ">
           <ProductBox from={from} product={product} />
         </div>
       ))}
