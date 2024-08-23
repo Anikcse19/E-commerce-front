@@ -27,61 +27,61 @@ const CategoryBox = ({ category }) => {
       <div className="flex flex-col items-center justify-center gap-2">
         {category.name == "Mobiles" ? (
           <img
-            className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] rounded-full bg-cover group-hover:scale-110 transition-all duration-300 ease-in-out group-hover:rotate-[360deg] "
+            className="w-[80px] h-[80px] md:w-[120px] md:h-[120px] rounded-full bg-cover group-hover:scale-110 transition-all duration-300 ease-in-out group-hover:rotate-[360deg] "
             src="/mobile.jpeg"
             alt="mobile-image"
           />
         ) : category.name == "Laptops" ? (
           <img
-            className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] rounded-full bg-cover group-hover:scale-110 transition-all duration-300 ease-in-out group-hover:rotate-[360deg]"
+            className="w-[80px] h-[80px] md:w-[120px] md:h-[120px] rounded-full bg-cover group-hover:scale-110 transition-all duration-300 ease-in-out group-hover:rotate-[360deg]"
             src="/laptop.jpeg"
             alt="laptop-image"
           />
         ) : category.name == "Headphone" ? (
           <img
-            className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] rounded-full bg-cover group-hover:scale-110 transition-all duration-300 ease-in-out group-hover:rotate-[360deg]"
+            className="w-[80px] h-[80px] md:w-[120px] md:h-[120px] rounded-full bg-cover group-hover:scale-110 transition-all duration-300 ease-in-out group-hover:rotate-[360deg]"
             src="/headphone.jpg"
             alt="headphone-image"
           />
         ) : category.name == "TV" ? (
           <img
-            className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] rounded-full bg-cover group-hover:scale-110 transition-all duration-300 ease-in-out group-hover:rotate-[360deg]"
+            className="w-[80px] h-[80px] md:w-[120px] md:h-[120px] rounded-full bg-cover group-hover:scale-110 transition-all duration-300 ease-in-out group-hover:rotate-[360deg]"
             src="/tv.jpg"
             alt="tv-image"
           />
         ) : category.name == "Smart Watch" ? (
           <img
-            className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] rounded-full bg-cover group-hover:scale-110 transition-all duration-300 ease-in-out group-hover:rotate-[360deg]"
+            className="w-[80px] h-[80px] md:w-[120px] md:h-[120px] rounded-full bg-cover group-hover:scale-110 transition-all duration-300 ease-in-out group-hover:rotate-[360deg]"
             src="/smart-watch.jpg"
             alt="smart-watch-image"
           />
         ) : category.name == "Gamming Console" ? (
           <img
-            className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] rounded-full bg-cover group-hover:scale-110 transition-all duration-300 ease-in-out group-hover:rotate-[360deg]"
+            className="w-[80px] h-[80px] md:w-[120px] md:h-[120px] rounded-full bg-cover group-hover:scale-110 transition-all duration-300 ease-in-out group-hover:rotate-[360deg]"
             src="/gaming-console.jpg"
             alt="gaming-console-image"
           />
         ) : category.name == "Drone" ? (
           <img
-            className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] rounded-full bg-cover group-hover:scale-110 transition-all duration-300 ease-in-out group-hover:rotate-[360deg]"
+            className="w-[80px] h-[80px] md:w-[120px] md:h-[120px] rounded-full bg-cover group-hover:scale-110 transition-all duration-300 ease-in-out group-hover:rotate-[360deg]"
             src="/drone.jpeg"
             alt="drone-image"
           />
         ) : category.name == "Printer" ? (
           <img
-            className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] rounded-full bg-cover group-hover:scale-110 transition-all duration-300 ease-in-out group-hover:rotate-[360deg]"
+            className="w-[80px] h-[80px] md:w-[120px] md:h-[120px] rounded-full bg-cover group-hover:scale-110 transition-all duration-300 ease-in-out group-hover:rotate-[360deg]"
             src="/printer.jpg"
             alt="printer-image"
           />
         ) : category.name == "CC Camera" ? (
           <img
-            className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] rounded-full bg-cover group-hover:scale-110 transition-all duration-300 ease-in-out group-hover:rotate-[360deg]"
+            className="w-[80px] h-[80px] md:w-[120px] md:h-[120px] rounded-full bg-cover group-hover:scale-110 transition-all duration-300 ease-in-out group-hover:rotate-[360deg]"
             src="/cc-camera.jpg"
             alt="cc-camera-image"
           />
         ) : category.name == "Battery For Laptop" ? (
           <img
-            className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] rounded-full bg-cover group-hover:scale-110 transition-all duration-300 ease-in-out group-hover:rotate-[360deg]"
+            className="w-[80px] h-[80px] md:w-[120px] md:h-[120px] rounded-full bg-cover group-hover:scale-110 transition-all duration-300 ease-in-out group-hover:rotate-[360deg]"
             src="/batter-laptop.jpg"
             alt="battery-laptop-image"
           />

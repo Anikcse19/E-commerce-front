@@ -66,7 +66,7 @@ const HomePage = ({ newProducts, allProducts }) => {
       {/* advertisement */}
       <div
         className="w-[90%]  mx-auto my-16
-       grid grid-cols-1 lg:grid-cols-2 items-center "
+       grid grid-cols-1 lg:grid-cols-2 items-center gap-6 "
       >
         <div className="w-full">
           <img
@@ -75,7 +75,7 @@ const HomePage = ({ newProducts, allProducts }) => {
             alt=""
           />
         </div>
-        <div className=" w-full grid grid-cols-1 lg:grid-cols-2 place-items-center">
+        <div className=" w-full grid grid-cols-2 lg:grid-cols-2 place-items-center">
           <img
             onClick={() => {
               router.push(`/product/${laptopProducts[2]?._id}`);

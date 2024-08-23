@@ -27,6 +27,7 @@ const ProductBox = ({ product, from }) => {
         onClick={() => {
           router.push(`/product/${product?._id}`);
         }}
+        className="cursor-pointer"
       >
         {/* product image */}
         <div className="group-hover:scale-110  transition-all duration-300 rounded-t-lg flex justify-center items-center overflow-hidden p-1 md:p-2 lg:p-3  w-[100%] bg-cover ">
