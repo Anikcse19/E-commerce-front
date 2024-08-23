@@ -4,10 +4,12 @@ import toast, { Toaster } from "react-hot-toast";
 import { CartContext } from "./CartContext";
 import ReactStars from "react-rating-stars-component";
 import { Rating } from "@mui/material";
+import { useRouter } from "next/router";
 
 const ProductBox = ({ product, from }) => {
   const [isHover, setIsHover] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
+  const router = useRouter();
 
   const { addProduct, addFavourite, removeFavourite } = useContext(CartContext);
 
@@ -21,7 +23,11 @@ const ProductBox = ({ product, from }) => {
       }}
       class="relative z-[1] w-[100%]  border border-gray-400 rounded-md  group"
     >
-      <Link href={"/product/" + product?._id}>
+      <div
+        onClick={() => {
+          router.push(`/product/${product?._id}`);
+        }}
+      >
         {/* product image */}
         <div className="group-hover:scale-110  transition-all duration-300 rounded-t-lg flex justify-center items-center overflow-hidden p-1 md:p-2 lg:p-3  w-[100%] bg-cover ">
           <img
@@ -29,7 +35,7 @@ const ProductBox = ({ product, from }) => {
             src={product?.url}
           />
         </div>
-      </Link>
+      </div>
 
       <div class="flex flex-col gap-2 py-2 px-2 md:px-3 lg:px-5">
         <div className="flex items-center gap-4">
