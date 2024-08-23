@@ -15,13 +15,24 @@ import { CartContext } from "@/components/CartContext";
 
 const HomePage = ({ newProducts, allProducts }) => {
   const router = useRouter();
-  const { showInitialModal, setShowInitialModal } = useContext(CartContext);
+  const {
+    showInitialModal,
+    setShowInitialModal,
+    modalOpenCount,
+    setModalOpenCount,
+    searchedWord,
+  } = useContext(CartContext);
 
+  // controll initial modal
   useEffect(() => {
     setTimeout(() => {
-      setShowInitialModal(true);
+      if (modalOpenCount == 0) {
+        setShowInitialModal(true);
+      }
+      setModalOpenCount(modalOpenCount + 1);
     }, 3000);
   }, []);
+
   // make a new array with all laptops
   const laptopProducts = [];
   allProducts.filter((product) => {
@@ -55,7 +66,13 @@ const HomePage = ({ newProducts, allProducts }) => {
     headPhonesProducts[0],
   ];
 
-  console.log(newProducts);
+  // make array with searched letter
+  const searchedProducts = [];
+  allProducts.filter((p) => {
+    if (p?.title.toLowerCase().includes(searchedWord.toLowerCase())) {
+      searchedProducts.push(p);
+    }
+  });
 
   return (
     <Layout>
@@ -111,7 +128,9 @@ const HomePage = ({ newProducts, allProducts }) => {
         </div>
       </div>
       <div>
-        <NewProducts newProducts={newProducts} />
+        <NewProducts
+          newProducts={searchedWord == "" ? newProducts : searchedProducts}
+        />
       </div>
 
       <Center>

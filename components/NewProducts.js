@@ -3,7 +3,7 @@ import ProductBox from "./ProductBox";
 
 const NewProducts = ({ newProducts }) => {
   return (
-    <div style={{}}>
+    <div id="products" style={{}}>
       <Center>
         <div className=" text-center mb-6">
           <h1 className="font-extrabold text-2xl">Featured Products</h1>

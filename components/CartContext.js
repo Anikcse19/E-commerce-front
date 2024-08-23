@@ -8,6 +8,8 @@ export function CartContextProvider({ children }) {
   const [cartProducts, setCartProducts] = useState([]);
   const [favouriteProducts, setFavouriteProducts] = useState([]);
   const [showInitialModal, setShowInitialModal] = useState(false);
+  const [modalOpenCount, setModalOpenCount] = useState(0);
+  const [searchedWord, setSearchedWord] = useState("");
 
   useEffect(() => {
     setTimeout(() => {
@@ -87,6 +89,10 @@ export function CartContextProvider({ children }) {
         clearCart,
         showInitialModal,
         setShowInitialModal,
+        modalOpenCount,
+        setModalOpenCount,
+        searchedWord,
+        setSearchedWord,
       }}
     >
       {children}

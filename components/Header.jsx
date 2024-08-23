@@ -13,7 +13,8 @@ import Cookies from "js-cookie";
 
 const Header = () => {
   const router = useRouter();
-  const { cartProducts, favouriteProducts } = useContext(CartContext);
+  const { cartProducts, favouriteProducts, searchedWord, setSearchedWord } =
+    useContext(CartContext);
   const [showModal, setShowModal] = useState(false);
   const [favourites, setFavourites] = useState([]);
   const [size, setSize] = useState("");
@@ -46,14 +47,39 @@ const Header = () => {
       >
         <Center>
           <div className="wrapper flex flex-col  lg:block relative py-4 px-2 lg:px-0">
-            <div className="flex justify-between w-[100%]">
+            <div className="flex items-center justify-between w-[100%]">
               {/* logo */}
               <div
-                className="cursor-pointer "
+                className="cursor-pointer hidden lg:block "
                 onClick={() => router.push("/")}
                 id="logo"
               >
                 <img src="/logo.png" alt="" className="w-44 h-12" />
+              </div>
+
+              {/* searchbox */}
+              <div className="flex items-center relative">
+                <input
+                  className="rounded-md bg-gray-300 px-1 py-1 outline-none text-black"
+                  type="text"
+                  name=""
+                  id=""
+                  placeholder="search products"
+                  onChange={(e) => {
+                    setSearchedWord(e.target.value);
+                  }}
+                  onFocus={() => {
+                    router.push("/#products");
+                  }}
+                />
+                {/* <p
+                  onClick={() => {
+                    router.push("/#products");
+                  }}
+                  className="bg-[#7C00FE] text-white px-2 lg:px-4 py-1 rounded-tr-md rounded-br-md absolute right-0 bottom-[11px] cursor-pointer"
+                >
+                  Search
+                </p> */}
               </div>
 
               <div className=" items-center gap-2  hidden lg:block">
